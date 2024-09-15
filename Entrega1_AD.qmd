@@ -1,0 +1,24 @@
+---
+title: "Entrega1_AD"
+author: "Jaume Maimó, Àngela Martí i Sergio Rivadulla"
+format: html
+editor: visual
+---
+
+## Descripción de los datos
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Análisis de los datos
+
+```{r}
+datos <- read.csv("Datos_AD_Entrega1.csv", sep = ";")
+datos
+names(datos)
+length(datos$Sexo)
+```
+
+```{r}
+#| echo: false
+2 * 2
+```
