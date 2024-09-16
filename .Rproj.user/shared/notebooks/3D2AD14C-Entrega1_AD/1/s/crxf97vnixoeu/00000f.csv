@@ -1,0 +1,3 @@
+"0","datos <- read.csv(""Datos_AD_Entrega1.csv"", sep = "";"")"
+"0","datos <- datos %>% rename(Gasto = Gasto.Turístico)"
+"0","datos"

@@ -68,49 +68,31 @@ while (n < length(paises) + 1) {
   medias_GMT[n] = mean(df_limpio$`Gasto medio turístico`[df_limpio$Países == paises[n]])
   n = n + 1
 }
+medias_GMT
+#Aquí podríamos hacer un data frame con los paises y cada media
 medias_GT <- rep(0,length(paises))
 n <- 0
 while (n < length(paises) + 1) {
   medias_GT[n] = mean(df_limpio$`Gasto turístico`[df_limpio$Países == paises[n]])
   n = n + 1
 }
-```
-
-```{r}
-#Gráfica de la media del gasto diario según el país
+medias_GT
 
 df_GMT <- data.frame(Paises = paises, Media = medias_GMT)
 ggplot(df_GMT, aes(x = Paises, y = Media)) + geom_bar(stat = "identity", position = "dodge") + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2))
-```
-
-```{r}
-#Gráfica de la media del gasto total según el país
 
 df_GT <- data.frame(Paises = paises, Media = medias_GT)
 ggplot(df_GT, aes(x = Paises, y = Media)) + geom_bar(stat = "identity", position = "dodge") + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2)) + scale_y_discrete()
-```
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2))
 
-Los dos gráficos muestran las medias de las columnas *Gasto medio turístico* y *Gasto turístico*, correspondientes a cada país.
 
-En el primero vemos que los turistas gastan más de media en los típicos destinos exóticos, como por ejemplo Brasil, Maldivas o Tailandia. Sin embargo, en el segundo gráfico podemos ver que los países anteriores no son los más visitados, ya que los ingresos totales son menores en comparación con los países europeos y EEUU. Esto puede deberse a que pese a gastar menos de media, el número de turistas en Europa es muy superior al resto de paises.
 
-```{r}
-#Vamos a calcular ahora la desviación típica en Alemania
-
-sd(df_limpio$`Gasto turístico`[df_limpio$Países == "Alemania"])
 
 ```
 
-La desviación típica es bastante alta, lo que nos indica que la variación del gasto total entre diferentes meses es notable. Esto tiene sentido, teniendo en cuenta que en alemania hay periodos de más turismo como por ejemplo en verano, en contraste con épocas de bajo turismo como por ejemplo durante el *COVID*.
 
-```{r}
 
-df_lineal <- data.frame(Meses = df_limpio$Periodo[df_limpio$Países == "Alemania"]  , Gasto = df_limpio$`Gasto turístico`[df_limpio$Países == "Alemania"])
-df_lineal
-ggplot(df_lineal, aes(x = Meses, y = Gasto)) + geom_line() + geom_point() + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2))
-```
 
 ```{r}
 
@@ -135,7 +117,10 @@ while (n < length(meses) + 1) {
 }
 medias_meses_dia
 
+
+
 #Hacemos unos gráficos para verlo de forma visual
+
 
 df_GMT <- data.frame(Periodo = meses, Media = medias_meses)
 ggplot(df_GMT, aes(x = meses, y = Media)) + geom_bar(stat = "identity", position = "dodge") + 
@@ -151,8 +136,10 @@ df_GT <- data.frame(Periodo = meses, Media = medias_meses_dia)
 ggplot(df_GT, aes(x = meses, y = Media)) + geom_bar(stat = "identity", position = "dodge") + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2))
 ```
-
 En un principio, podríamos esperar que habría una correlación entre los meses que más se ha gastado con los gastos diarios por persona en ese mes. Pero, gracias a esta gráfica apreciamos que no hay ninguna relación entre estas dos variables. Puede ser debido, por ejemplo que durante el tiempo de pandemia hubo muchos productos y alimentos que subieron de precio causando así esta irregularidad.
+
+
+\`\`\`
 
 # Enlaces
 
