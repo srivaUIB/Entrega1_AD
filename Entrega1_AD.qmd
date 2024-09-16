@@ -5,22 +5,30 @@ format: html
 editor: visual
 ---
 
-## Descripción de los datos
+## Participants
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Els alumnes que formam part d'aquest grup som els següents:
 
-## Análisis de los datos
+-   Sergio Rivadulla
+-   Àngela Martí
+-   Jaume Maimó
+
+## Anàlisis de les dades
 
 ```{r}
 datos <- read.csv("Datos_AD_Entrega1.csv", sep = ";")
 datos
 names(datos)
 length(datos$Sexo)
+head(datos)
 ```
 
-```{r}
-#| echo: false
-2 * 2
-```
+## Enllaços
 
-hola que tal
+Per una banda, donarem l'enllaç del repositori de Github amb el qual hem treballat. Aquest enllaç és el que deixam a continuació:
+
+-   https://github.com/srivaUIB/Entrega1_AD.git
+
+Per altra bana, deixam també l'enllaç del repositori del qual hem obtingut el conjunt de dades:
+
+-   NOSE QUIN ÉS
