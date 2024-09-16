@@ -108,9 +108,11 @@ La desviación típica es bastante alta, lo que nos indica que la variación del
 ```{r}
 
 df_lineal <- data.frame(Meses = df_limpio$Periodo[df_limpio$Países == "Alemania"]  , Gasto = df_limpio$`Gasto turístico`[df_limpio$Países == "Alemania"])
-df_lineal
-ggplot(df_lineal, aes(x = Meses, y = Gasto)) + geom_line() + geom_point() + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2))
+ggplot(df_lineal, aes(x = Meses, y = Gasto)) + geom_point() + theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2)) + scale_y_discrete()
 ```
+
+Podemos ver claramente que durante el periodo *COVID*, el gasto se redujo drásticamente y que a partir de la relajació de las restricciones, el turismo volvió a desarrollarse y se volvió a incrementar el gasto.
+
 
 ```{r}
 
@@ -124,7 +126,6 @@ while (n < length(meses) + 1) {
   medias_meses[n] = mean(df_limpio$`Gasto turístico`[df_limpio$Periodo == meses[n]])
   n = n + 1
 }
-medias_meses
 
 #Aquí calcularemos la media diaria de cada persona teniendo en cuenta todos los países respecto de cada mes
 medias_meses_dia <- rep(0,length(meses))
@@ -133,13 +134,12 @@ while (n < length(meses) + 1) {
   medias_meses_dia[n] = mean(df_limpio$`Gasto medio turístico`[df_limpio$Periodo == meses[n]])
   n = n + 1
 }
-medias_meses_dia
 
 #Hacemos unos gráficos para verlo de forma visual
 
 df_GMT <- data.frame(Periodo = meses, Media = medias_meses)
 ggplot(df_GMT, aes(x = meses, y = Media)) + geom_bar(stat = "identity", position = "dodge") + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2)) + scale_y_discrete()
 ```
 
 Por una parte, observamos que durante los meses de verano y, sobretodo el mes de agosto, el gasto turísitico es mucho más elevado que el resto de meses.
