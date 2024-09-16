@@ -1,0 +1,11 @@
+"0",""
+"0","#Los datos de las columnas ""Gasto turístico"" y ""Gasto medio turístico"" nos vienen dados como caracteres, así que hay que modificarlos para que sean números."
+"0",""
+"0","df$`Gasto turístico` <- gsub(""\\."","""",df$`Gasto turístico`)"
+"0","df$`Gasto turístico` <- as.numeric(df$`Gasto turístico`)"
+"0","df$`Gasto medio turístico` <- gsub(""\\,"",""."",df$`Gasto medio turístico`)"
+"0","df$`Gasto medio turístico` <- as.numeric(df$`Gasto medio turístico`)"
+"2","Aviso:"
+"2"," NAs introducidos por coerción
+"
+"0","df_limpio <- df %>% filter(!is.na(`Gasto turístico`))"

@@ -1,0 +1,6 @@
+"0",""
+"0","#La columna Gasto.Turístico es redundante, ya que nos esta dando todo el rato la misma información. Lo que vamos a hacer es dividir esta información en dos nuevas columnas que contengan el gasto medio y el gasto total; de esta forma se ven los datos más claramente."
+"0",""
+"0","df <- datos %>% "
+"0","  pivot_wider(names_from = Gasto, values_from = Total)"
+"0","df"
