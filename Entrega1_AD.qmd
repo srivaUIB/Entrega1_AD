@@ -5,22 +5,43 @@ format: html
 editor: visual
 ---
 
+```{r, echo=FALSE}
+
+library(tidyverse)
+
+```
+
 ## Descripción de los datos
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+El conjunto de datos elegido recoge el gasto económico que realizan los turistas cuando van de vacaciones. La información está catalogada según el país y el mes del año.
+
+Además la tabla nos aporta dos datos cuantitativos para cada país y período de tiempo; el gasto medio turístico hace referencia al dinero que gasta un turista de media al día. Por otro lado, el gasto turístico se refiere al total de dinero que ha ingresado el país gracias al turismo.
 
 ## Análisis de los datos
 
 ```{r}
 datos <- read.csv("Datos_AD_Entrega1.csv", sep = ";")
+datos <- datos %>% rename(Gasto = Gasto.Turístico)
 datos
-names(datos)
-length(datos$Sexo)
+
+#La columna Gasto.Turístico es redundante, ya que nos esta dando todo el rato la misma información. Lo que vamos a hacer es dividir esta información en dos nuevas columnas que contengan el gasto medio y el gasto total; de esta forma se ven los datos más claramente.
+
+df <- datos %>% 
+  pivot_wider(names_from = Gasto, values_from = Total)
+df
+
+#Los datos de las columnas "Gasto turístico" y "Gasto medio turístico" nos vienen dados como caracteres, así que hay que modificarlos para que sean números.
+
+df$`Gasto turístico` <- gsub("\\.","",df$`Gasto turístico`)
+df$`Gasto turístico` <- as.numeric(df$`Gasto turístico`)
+df$`Gasto medio turístico` <- gsub("\\,",".",df$`Gasto medio turístico`)
+df$`Gasto medio turístico` <- as.numeric(df$`Gasto medio turístico`)
+df_limpio <- df %>% filter(!is.na(`Gasto turístico`))
 ```
+
+A continuación vamos a
 
 ```{r}
-#| echo: false
-2 * 2
+mean(df_limpio$`Gasto turístico`)
+mean(df_limpio$`Gasto medio turístico`)
 ```
-
-hola que tal
