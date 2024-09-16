@@ -8,10 +8,11 @@ editor: visual
 ```{r, echo=FALSE}
 
 library(tidyverse)
+library(ggplot2)
 
 ```
 
-# Participants
+# Participantes
 
 Los alumnos que conformamos este grupo somos los siguientes:
 
@@ -20,12 +21,6 @@ Los alumnos que conformamos este grupo somos los siguientes:
 -   Jaume Maimó
 
 # Descripción de los datos
-
-El conjunto de datos elegido recoge el gasto económico que realizan los turistas cuando van de vacaciones. La información está catalogada según el país y el mes del año.
-
-Además la tabla nos aporta dos datos cuantitativos para cada país y período de tiempo; el gasto medio turístico hace referencia al dinero que gasta un turista de media al día. Por otro lado, el gasto turístico se refiere al total de dinero que ha ingresado el país gracias al turismo.
-
-## Anàlisis de les dades
 
 ```{r}
 datos <- read.csv("Datos_AD_Entrega1.csv", sep = ";")
@@ -46,6 +41,19 @@ df$`Gasto medio turístico` <- gsub("\\,",".",df$`Gasto medio turístico`)
 df$`Gasto medio turístico` <- as.numeric(df$`Gasto medio turístico`)
 df_limpio <- df %>% filter(!is.na(`Gasto turístico`))
 ```
+
+El conjunto de datos elegido recoge el gasto económico que realizan los turistas cuando van de vacaciones. La información está catalogada según el país y el mes del año.
+
+Además la tabla nos aporta dos datos cuantitativos para cada país y período de tiempo; el gasto medio turístico hace referencia al dinero que gasta un turista de media al día. Por otro lado, el gasto turístico se refiere al total de dinero que ha ingresado el país gracias al turismo cada mes.
+
+En el data frame encontramos diferentes tipos de datos:
+
+-   La columna *Países* contiene variables cualitativas.
+-   La columna *Periodo* contiene variables ordinales, ya que son periodos de cada año.
+-   La columna *Gasto medio turístico* contiene variables cuantitativas y además contínuas.
+-   La columna *Gasto turístico* contiene variables cuantitativas discretas.
+
+## Anàlisis de les dades
 
 ```{r}
 mean(df_limpio$`Gasto turístico`)
@@ -70,6 +78,13 @@ while (n < length(paises) + 1) {
 }
 medias_GT
 
+df_GMT <- data.frame(Paises = paises, Media = medias_GMT)
+ggplot(df_GMT, aes(x = Paises, y = Media)) + geom_bar(stat = "identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2))
+
+df_GT <- data.frame(Paises = paises, Media = medias_GT)
+ggplot(df_GT, aes(x = Paises, y = Media)) + geom_bar(stat = "identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.2))
 
 ```
 
