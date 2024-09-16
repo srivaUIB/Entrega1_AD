@@ -5,7 +5,6 @@ format: html
 editor: visual
 ---
 
-
 ```{r, echo=FALSE}
 
 library(tidyverse)
@@ -14,11 +13,11 @@ library(tidyverse)
 
 # Participants
 
-Els alumnes que formam part d'aquest grup som els següents:
+Los alumnos que conformamos este grupo somos los siguientes:
 
-*Sergio Rivadulla
-*Àngela Martí
-*Jaume Maimó
+-   Sergio Rivadulla
+-   Àngela Martí
+-   Jaume Maimó
 
 # Descripción de los datos
 
@@ -51,17 +50,37 @@ df_limpio <- df %>% filter(!is.na(`Gasto turístico`))
 ```{r}
 mean(df_limpio$`Gasto turístico`)
 mean(df_limpio$`Gasto medio turístico`)
-```
+
+#A continuación vamos a calcular las medias por país para ver donde genera más dinero el turismo.
+
+paises <- unique(df_limpio$Países)
+medias_GMT <- rep(0,length(paises))
+n <- 0
+while (n < length(paises) + 1) {
+  medias_GMT[n] = mean(df_limpio$`Gasto medio turístico`[df_limpio$Países == paises[n]])
+  n = n + 1
+}
+medias_GMT
+#Aquí podríamos hacer un data frame con los paises y cada media
+medias_GT <- rep(0,length(paises))
+n <- 0
+while (n < length(paises) + 1) {
+  medias_GT[n] = mean(df_limpio$`Gasto turístico`[df_limpio$Países == paises[n]])
+  n = n + 1
+}
+medias_GT
+
 
 ```
 
-## Enllaços
+\`\`\`
 
-Per una banda, donarem l'enllaç del repositori de Github amb el qual hem treballat. Aquest enllaç és el que deixam a continuació:
+# Enlaces
+
+El enlace al repositorio de Github donde trabajamos es el siguiente:
 
 -   https://github.com/srivaUIB/Entrega1_AD.git
 
-Per altra bana, deixam també l'enllaç del repositori del qual hem obtingut el conjunt de dades:
+El enlace al repositorio donde se encuentran los datos utilizados es el siguiente:
 
--   NOSE QUIN ÉS
-
+-   https://www.ine.es/jaxiT3/Tabla.htm?t=58926
