@@ -5,27 +5,26 @@ format: html
 editor: visual
 ---
 
-<<<<<<< HEAD
+
 ```{r, echo=FALSE}
 
 library(tidyverse)
 
 ```
 
-## Descripción de los datos
+# Participants
+
+Els alumnes que formam part d'aquest grup som els següents:
+
+*Sergio Rivadulla
+*Àngela Martí
+*Jaume Maimó
+
+# Descripción de los datos
 
 El conjunto de datos elegido recoge el gasto económico que realizan los turistas cuando van de vacaciones. La información está catalogada según el país y el mes del año.
 
 Además la tabla nos aporta dos datos cuantitativos para cada país y período de tiempo; el gasto medio turístico hace referencia al dinero que gasta un turista de media al día. Por otro lado, el gasto turístico se refiere al total de dinero que ha ingresado el país gracias al turismo.
-=======
-## Participants
-
-Els alumnes que formam part d'aquest grup som els següents:
->>>>>>> 13b2393184d933f0f60953b5a783260ea8e22563
-
--   Sergio Rivadulla
--   Àngela Martí
--   Jaume Maimó
 
 ## Anàlisis de les dades
 
@@ -53,7 +52,6 @@ df_limpio <- df %>% filter(!is.na(`Gasto turístico`))
 mean(df_limpio$`Gasto turístico`)
 mean(df_limpio$`Gasto medio turístico`)
 ```
-=======
 
 ```
 
@@ -66,4 +64,4 @@ Per una banda, donarem l'enllaç del repositori de Github amb el qual hem trebal
 Per altra bana, deixam també l'enllaç del repositori del qual hem obtingut el conjunt de dades:
 
 -   NOSE QUIN ÉS
->>>>>>> 13b2393184d933f0f60953b5a783260ea8e22563
+
