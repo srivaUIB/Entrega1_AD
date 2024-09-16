@@ -5,33 +5,22 @@ format: html
 editor: visual
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE}
 
 library(tidyverse)
 library(ggplot2)
 
 ```
 
-# Participantes
-
-Los alumnos que conformamos este grupo somos los siguientes:
-
--   Sergio Rivadulla
--   Àngela Martí
--   Jaume Maimó
-
 # Descripción de los datos
 
-```{r}
+```{r, warning=FALSE}
 datos <- read.csv("Datos_AD_Entrega1.csv", sep = ";")
 datos <- datos %>% rename(Gasto = Gasto.Turístico)
-datos
 
 #La columna Gasto.Turístico es redundante, ya que nos esta dando todo el rato la misma información. Lo que vamos a hacer es dividir esta información en dos nuevas columnas que contengan el gasto medio y el gasto total; de esta forma se ven los datos más claramente.
 
-df <- datos %>% 
-  pivot_wider(names_from = Gasto, values_from = Total)
-df
+df <- datos %>% pivot_wider(names_from = Gasto, values_from = Total)
 
 #Los datos de las columnas "Gasto turístico" y "Gasto medio turístico" nos vienen dados como caracteres, así que hay que modificarlos para que sean números.
 
@@ -53,7 +42,7 @@ En el data frame encontramos diferentes tipos de datos:
 -   La columna *Gasto medio turístico* contiene variables cuantitativas y además contínuas.
 -   La columna *Gasto turístico* contiene variables cuantitativas discretas.
 
-## Anàlisis de les dades
+## Análisis de los datos
 
 ```{r}
 mean(df_limpio$`Gasto turístico`)
@@ -112,7 +101,6 @@ ggplot(df_lineal, aes(x = Meses, y = Gasto)) + geom_point() + theme(axis.text.x 
 ```
 
 Podemos ver claramente que durante el periodo *COVID*, el gasto se redujo drásticamente y que a partir de la relajació de las restricciones, el turismo volvió a desarrollarse y se volvió a incrementar el gasto.
-
 
 ```{r}
 
